@@ -1,7 +1,13 @@
 // A small example of how the Hotrod library can be used.
-// Compile and run this file to see how it works.
+// To build and run:
+// $ make
+// $ make run
+
 #include "hotrod.h"
 
 int main() {
-  HOTROD(stuff);
+  hotrod_print_compile_command = true; // see what compiler commands are invoked
+  for(int i = 0; i < 3; i++) {
+    HOTROD(stuff); // will only be compiled the first time in the loop
+  }
 }

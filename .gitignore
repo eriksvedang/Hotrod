@@ -1,0 +1,4 @@
+*.o
+*.so
+/hot_stuff.c
+/example
