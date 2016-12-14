@@ -5,26 +5,26 @@ It should work fine on Unix systems. Patches for making it run on Windows are mo
 
 ## How to use it
 
-1. Include it!
+### 1. Include it!
 ```c
 #include "hotrod.h"
 ```
 
-2. Use the HOTROD macro somewhere in your code where you want a hot-reloadable function:
+### 2. Use the HOTROD macro somewhere in your code where you want a hot-reloadable function:
 ```c
 int main() {
   HOTROD(mess, 100, "hello");
 }
 ```
 
-This is equivalent of the following normal function call. When you're done experimenting with your function you can replace it with this.
+This is equivalent of the following normal function call.
 ```c
 int main() {
   mess(100, "hello");
 }
 ```
 
-3. Compile your program and run it. This will create a file called 'hot_stuff.c'. In this file there will be a stub function for you to fill in. Every time the line with the macro is executed (and you have changed the source file), the code will recompile and a new version of the function will be loaded in.
+### 3. Compile your program and run it. This will create a file called 'hot_stuff.c'. In this file there will be a stub function for you to fill in. Every time the line with the macro is executed (and you have changed the source file), the code will recompile and a new version of the function will be loaded in.
 
 ## Example
 Check out 'example.c' in this repository.
