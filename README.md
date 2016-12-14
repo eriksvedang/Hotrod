@@ -27,6 +27,9 @@ int main() {
 ### 3. Compile your program and run it
 This will create a file called 'hot_mess.c'. In this file there will be a stub function for you to fill in. Every time the line with the macro is executed (and you have changed the source file), the code will recompile and a new version of the function will be loaded in.
 
+## Caveats
+Right now it's not possible to use the same name in two different HOTROD() invocations. If you want to call the same reloadable function in several places, use ```NAME_fn()``` where NAME has been replaced with the actual name you used in the macro.
+
 ## Example
 Check out 'example.c' in this repository.
 
