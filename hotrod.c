@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "hotrod.h"
 #include <dlfcn.h>
 #include <unistd.h>
 #include <assert.h>
@@ -13,7 +13,7 @@ void hotrod_ensure_func(const char *fn_name, void **dylib_out_ptr, void **fn_out
   char *filename;
   char *dylib_name;
   asprintf(&filename, "%s/%s%s.c", hotrod_dir, hotrod_prefix, fn_name);
-  asprintf(&dylib_name, "%s/%s.so", hotrod_dir, fn_name);
+  asprintf(&dylib_name, "%s/%s%s.so", hotrod_dir, hotrod_prefix, fn_name);
 
   // Ensure file
   FILE *file = fopen(filename, "r");
@@ -62,17 +62,5 @@ void hotrod_ensure_func(const char *fn_name, void **dylib_out_ptr, void **fn_out
   // Cleanup
   free(filename);
   free(dylib_name);
-}
-
-#define HOTROD(name, ...)                                         \
-  void *name##_lib = NULL;                                        \
-  void (*name##_fn)() = NULL;                                     \
-  hotrod_ensure_func(#name, &name##_lib, (void*)&name##_fn);      \
-  name##_fn(__VA_ARGS__);
-
-int main() {
-  hotrod_dir = "./temp";
-  hotrod_extra_includes = (char*[]) { "heh.h", NULL };
-  HOTROD(woot, 1000)
 }
 

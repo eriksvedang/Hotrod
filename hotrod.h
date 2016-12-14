@@ -1,6 +1,7 @@
 #ifndef HOTROD_H
 #define HOTROD_H
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
 
