@@ -43,6 +43,8 @@ void foo() {
 }
 ```
 
+Just including sharing a header file that contains the definition of a global variable will *not* work. The dynamic library will get its own memory location for this variable (because of static linkage).
+
 ## Example
 Check out 'example.c' in this repository.
 
