@@ -52,9 +52,10 @@ void hotrod_ensure_func(const char *fn_name, void **dylib_out_ptr, void **fn_out
   // Compile code
   char *compile_cmd;
   asprintf(&compile_cmd,
-           "%s -include stdio.h %s"
+           "%s "
+           "-include stdio.h %s"
+           "-undefined dynamic_lookup " // Dylib will search binary for missing symbols (enables shared globals)
            "-shared "
-           "-undefined dynamic_lookup "
            "-o %s %s",
            hotrod_compiler,
            extra_includes_concatenated ? extra_includes_concatenated : "",
