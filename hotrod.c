@@ -19,12 +19,13 @@ void hotrod_ensure_func(const char *fn_name, void **dylib_out_ptr, void **fn_out
 
   // Skip re-compilation if the file hasn't changed
   struct stat attr;
-  if(stat(filename, &attr) == 0) { // the file exists
+  if(stat(filename, &attr) == 0) { // The file exists
     if(attr.st_mtime == *timestamp_out_ptr) {
       goto cleanup;
+    } else {
+      *timestamp_out_ptr = attr.st_mtime;
     }
   }
-  *timestamp_out_ptr = attr.st_mtime;
   
   // Ensure file
   FILE *file = fopen(filename, "r");    
@@ -33,6 +34,7 @@ void hotrod_ensure_func(const char *fn_name, void **dylib_out_ptr, void **fn_out
     file = fopen(filename, "w");
     assert(file);
     fprintf(file, "void %s() {\n  printf(\"%s\\n\");\n}\n", fn_name, fn_name);
+    *timestamp_out_ptr = time(0);
   }
   fclose(file);
 
@@ -49,7 +51,11 @@ void hotrod_ensure_func(const char *fn_name, void **dylib_out_ptr, void **fn_out
   
   // Compile code
   char *compile_cmd;
-  asprintf(&compile_cmd, "%s -include stdio.h %s-shared -undefined dynamic_lookup -o %s %s",
+  asprintf(&compile_cmd,
+           "%s -include stdio.h %s"
+           "-shared "
+           "-undefined dynamic_lookup "
+           "-o %s %s",
            hotrod_compiler,
            extra_includes_concatenated ? extra_includes_concatenated : "",
            dylib_name,
