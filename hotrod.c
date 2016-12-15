@@ -49,7 +49,7 @@ void hotrod_ensure_func(const char *fn_name, void **dylib_out_ptr, void **fn_out
   
   // Compile code
   char *compile_cmd;
-  asprintf(&compile_cmd, "%s -include stdio.h %s-shared -o %s %s",
+  asprintf(&compile_cmd, "%s -include stdio.h %s-shared -undefined dynamic_lookup -o %s %s",
            hotrod_compiler,
            extra_includes_concatenated ? extra_includes_concatenated : "",
            dylib_name,
