@@ -28,7 +28,20 @@ int main() {
 This will create a file called 'hot_mess.c'. In this file there will be a stub function for you to fill in. Every time the line with the macro is executed (and you have changed the source file), the code will recompile and a new version of the function will be loaded in.
 
 ## Caveats
+
+### Duplicated definitions
 Right now it's not possible to use the same name in two different HOTROD() invocations. If you want to call the same reloadable function in several places, just call it like a normal function except for in that one place. Please note that the code will only be reloaded when the line of the macro invocation is executed.
+
+### Global variables
+To access and change global variables in your main program, define them as extern at the top of your stub source file, like so:
+
+```c
+extern int global_x;
+
+void foo() {
+    global_x = 100;
+}
+```
 
 ## Example
 Check out 'example.c' in this repository.
