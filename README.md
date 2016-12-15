@@ -42,7 +42,7 @@ void foo() {
 
 Just including sharing a header file that contains the definition of a non-extern global variable will *not* work. The dynamic library will get its own memory location for this variable (because of default static linkage). 
 
-Better solution: Declare each global variables as 'extern' in the header file and 'static' in the implementation file (of your normal source code). Now you can use these variables by including the header file in the stub function. Since the header contains an 'extern' declaration you don't need to add that in your file, just use the variable as normal.
+_A better solution_ is to declare each global variables as 'extern' in the header file and 'static' in the implementation file (of your normal source code). Now you can use these variables by including the header file in the stub function. Since the header contains an 'extern' declaration you don't need to add that in your file, just use the variable as normal.
 
 ### Duplicated definitions
 Right now it's not possible to use the same name in two different HOTROD() invocations. If you want to call the same reloadable function in several places, just call it like a normal function except for in that one place. Please note that the code will only be reloaded when the line of the macro invocation is executed.
