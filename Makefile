@@ -2,7 +2,7 @@ CFLAGS=
 LDFLAGS=
 
 all: example.o;
-	clang example.c hotrod.c -o example -O0 $(CFLAGS) $(LDFLAGS)
+	clang example.c hotrod.c -ldl -o example -O0 $(CFLAGS) $(LDFLAGS)
 
 run:
 	./example
