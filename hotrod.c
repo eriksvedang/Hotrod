@@ -56,6 +56,7 @@ void hotrod_ensure_func(const char *fn_name, void **dylib_out_ptr, void **fn_out
            "-include stdio.h %s"
            "-undefined dynamic_lookup " // Dylib will search binary for missing symbols (enables shared globals)
            "-shared "
+           "-fPIC "
            "-o %s %s",
            hotrod_compiler,
            extra_includes_concatenated ? extra_includes_concatenated : "",
