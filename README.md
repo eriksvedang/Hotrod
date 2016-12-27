@@ -45,7 +45,7 @@ Just including sharing a header file that contains the definition of a non-exter
 **A better solution** is to declare each global variables as 'extern' in the header file and 'static' in the implementation file (of your normal source code). Now you can use these variables by including the header file in the stub function. Since the header contains an 'extern' declaration you don't need to add that in your file, just use the variable as normal.
 
 ### Duplicated definitions
-It's not possible to use the same name in two HOTROD() invocations in the same file. Instead, use the HOTROD_LATER() macro in the places where the function will be called later on (you must try to anticipate which place will be called first and put the normal HOTROD() macro there).
+It's not possible to use the same name in two HOTROD() invocations in the same file. Instead, use the HOTROD_LATER() macro in the places where the function will be called later on (you must try to anticipate which place will be called first and put the normal HOTROD() macro there). Also - remember that you can always call the function with it's normal name (like you'd do in the finished program) but remember that the code won't be automatically reloaded in those places.
 
 ## Example
 Check out 'example.c' in this repository.
