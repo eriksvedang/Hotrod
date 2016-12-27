@@ -45,7 +45,7 @@ Just including sharing a header file that contains the definition of a non-exter
 **A better solution** is to declare each global variables as 'extern' in the header file and 'static' in the implementation file (of your normal source code). Now you can use these variables by including the header file in the stub function. Since the header contains an 'extern' declaration you don't need to add that in your file, just use the variable as normal.
 
 ### Duplicated definitions
-Right now it's not possible to use the same name in two different HOTROD() invocations. If you want to call the same reloadable function in several places, just call it like a normal function except for in that one place. Please note that the code will only be reloaded when the line of the macro invocation is executed.
+It's not possible to use the same name in two HOTROD() invocations in the same file. Instead, use the HOTROD_LATER() macro in the places where the function will be called later on (you must try to anticipate which place will be called first and put the normal HOTROD() macro there).
 
 ## Example
 Check out 'example.c' in this repository.

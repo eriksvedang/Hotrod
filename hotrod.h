@@ -20,4 +20,8 @@ void hotrod_ensure_func(const char *fn_name, void **dylib_out_ptr, void **fn_out
   hotrod_ensure_func(#name, &name##_lib, (void*)&name, &name##_timestamp); \
   name(__VA_ARGS__);
 
+#define HOTROD_LATER(name, ...)                                         \
+  hotrod_ensure_func(#name, &name##_lib, (void*)&name, &name##_timestamp); \
+  name(__VA_ARGS__);
+
 #endif
